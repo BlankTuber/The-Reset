@@ -44,8 +44,8 @@ int equationLength(const char *equation) {
 struct Token *tokenize(const char *equation) {
     const int length = equationLength(equation); // Get equation length
 
-    // Allocate memory for array of a "length" amount of "Token" structs
-    struct Token *token_list = malloc(length * sizeof(struct Token));
+    // Allocate zeroed memory for array of a "length" amount of "Token" structs
+    struct Token *token_list = calloc(length, sizeof(struct Token));
 
     int index = 0;
     int token_index = 0;

@@ -42,11 +42,11 @@ char enumToChar(enum TokenType tokenType) {
 int main() {
     char equation[] = "12.2 + 3.3 - 2.4 / 1.123 * 10.12";
 
-    struct Token *tokenizedEquation = tokenize(equation); // Gives a pointer to the start of the malloc() buffer
+    struct Token *tokenizedEquation = tokenize(equation); // Gives a pointer to the start of the calloc() buffer
 
     int i = 0;
 
-    // Forward in the malloc() buffer until it hits the EndOfEquation, which is the end of the buffer
+    // Forward in the calloc() buffer until it hits the EndOfEquation, which is the end of the buffer
     while (tokenizedEquation[i].tokenType != EndOfEquation) {
         printf("%c -- %f\n", enumToChar(tokenizedEquation[i].tokenType), tokenizedEquation[i].value);
         i++;
