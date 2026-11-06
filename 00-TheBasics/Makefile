@@ -32,6 +32,10 @@ output/%.o: src/%.c
 	@mkdir -p output
 	$(CC) $(CFLAGS) -c $< -o $@
 
+# Build (if needed) and run the calculator
+run: $(EXEC)
+	./$(EXEC)
+
 # Build and run tests (main.c is left out, since the test file has its own main)
 test: $(TEST_SRC) $(LIB_SRC)
 	@mkdir -p output
