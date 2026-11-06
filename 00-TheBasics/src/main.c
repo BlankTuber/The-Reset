@@ -1,5 +1,6 @@
 #include "tokenize.h"
 #include <stdio.h>
+#include <stdlib.h>
 
 // Makes the enum types display as their character to see what it actually is.
 char enumToChar(enum TokenType tokenType) {
@@ -51,6 +52,8 @@ int main() {
         printf("%c -- %f\n", enumToChar(tokenizedEquation[i].tokenType), tokenizedEquation[i].value);
         i++;
     }
+
+    free(tokenizedEquation);
 
     return 0;
 }
