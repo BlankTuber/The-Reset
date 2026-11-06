@@ -1,0 +1,17 @@
+[
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-Iincludes",
+      "-Wall",
+      "-Wextra",
+      "-c",
+      "-o",
+      "output/main.o",
+      "src/main.c"
+    ],
+    "directory": "/home/blank/Documents/Projects/The-Reset/00-TheBasics",
+    "file": "/home/blank/Documents/Projects/The-Reset/00-TheBasics/src/main.c",
+    "output": "/home/blank/Documents/Projects/The-Reset/00-TheBasics/output/main.o"
+  }
+]
