@@ -1,3 +1,4 @@
+#include "parse.h"
 #include "tokenize.h"
 #include <stdio.h>
 #include <stdlib.h>
@@ -41,19 +42,30 @@ char enumToChar(enum TokenType tokenType) {
 }
 
 int main() {
-    char equation[] = "12.2 + 3.3 - 2.4 / 1.123 * 10.12";
+    char equation[] = "2*10/22^(3/2)+5.5-(1+3)/2";
 
-    struct Token *tokenizedEquation = tokenize(equation); // Gives a pointer to the start of the calloc() buffer
+    struct Token *tokenizedEquation = tokenize(equation);            // Tokenize input
+    struct Token *orderedEquation = shuntingYard(tokenizedEquation); // Order equation
 
     int i = 0;
 
-    // Forward in the calloc() buffer until it hits the EndOfEquation, which is the end of the buffer
+    // Loop through tokenized equation
     while (tokenizedEquation[i].tokenType != EndOfEquation) {
         printf("%c -- %f\n", enumToChar(tokenizedEquation[i].tokenType), tokenizedEquation[i].value);
         i++;
     }
 
+    i = 0;
+    printf("\n\n\n");
+
+    // Loop through ordered equation
+    while (orderedEquation[i].tokenType != EndOfEquation) {
+        printf("%c -- %f\n", enumToChar(orderedEquation[i].tokenType), orderedEquation[i].value);
+        i++;
+    }
+
     free(tokenizedEquation);
+    free(orderedEquation);
 
     return 0;
 }

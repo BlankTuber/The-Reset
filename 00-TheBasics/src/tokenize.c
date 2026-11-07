@@ -106,6 +106,7 @@ struct Token *tokenize(const char *equation) {
 
                     // Kill program if malformed number
                     if (totalDots > 1) {
+                        free(token_list);
                         fprintf(stderr, "Error: malformed number (extra decimal point)\n");
                         exit(1);
                     }

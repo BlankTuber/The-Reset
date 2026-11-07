@@ -13,35 +13,5 @@
     "directory": "/home/blank/Documents/Projects/The-Reset/00-TheBasics",
     "file": "/home/blank/Documents/Projects/The-Reset/00-TheBasics/src/main.c",
     "output": "/home/blank/Documents/Projects/The-Reset/00-TheBasics/output/main.o"
-  },
-  {
-    "arguments": [
-      "/usr/bin/gcc",
-      "-Iincludes",
-      "-Wall",
-      "-Wextra",
-      "-c",
-      "-o",
-      "output/parse.o",
-      "src/parse.c"
-    ],
-    "directory": "/home/blank/Documents/Projects/The-Reset/00-TheBasics",
-    "file": "/home/blank/Documents/Projects/The-Reset/00-TheBasics/src/parse.c",
-    "output": "/home/blank/Documents/Projects/The-Reset/00-TheBasics/output/parse.o"
-  },
-  {
-    "arguments": [
-      "/usr/bin/gcc",
-      "-Iincludes",
-      "-Wall",
-      "-Wextra",
-      "-c",
-      "-o",
-      "output/tokenize.o",
-      "src/tokenize.c"
-    ],
-    "directory": "/home/blank/Documents/Projects/The-Reset/00-TheBasics",
-    "file": "/home/blank/Documents/Projects/The-Reset/00-TheBasics/src/tokenize.c",
-    "output": "/home/blank/Documents/Projects/The-Reset/00-TheBasics/output/tokenize.o"
   }
 ]
