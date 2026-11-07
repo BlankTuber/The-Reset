@@ -4,8 +4,11 @@ CFLAGS = -Iincludes -Wall -Wextra
 # Wall: Turn on standard warnings
 # Wextra: Turn on additional warnings
 
+# lm: Link the math library (needed for pow)
+LDLIBS = -lm
+
 # Everything except main.c (shared by the program and the tests)
-LIB_SRC = src/parse.c src/tokenize.c
+LIB_SRC = src/parse.c src/tokenize.c src/evaluate.c
 
 # Add all C files
 SRC = src/main.c $(LIB_SRC)
@@ -23,14 +26,18 @@ TEST_EXEC = output/run_tests
 # Default target for "make" command
 all: $(EXEC)
 
-# How to build the final executable
+# How to build the final executable (libraries go last)
 $(EXEC): $(OBJ)
-	$(CC) $(OBJ) -o $(EXEC)
+	$(CC) $(OBJ) -o $(EXEC) $(LDLIBS)
 
 # How to compile .c files into .o files
+# MMD/MP: Also write a .d file listing which headers each .c file uses
 output/%.o: src/%.c
 	@mkdir -p output
-	$(CC) $(CFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) -MMD -MP -c $< -o $@
+
+# Pull in the generated header dependencies (ignored if they don't exist yet)
+-include $(OBJ:.o=.d)
 
 # Build (if needed) and run the calculator
 run: $(EXEC)
@@ -39,11 +46,11 @@ run: $(EXEC)
 # Build and run tests (main.c is left out, since the test file has its own main)
 test: $(TEST_SRC) $(LIB_SRC)
 	@mkdir -p output
-	$(CC) $(CFLAGS) -g -fsanitize=address,undefined $(TEST_SRC) $(LIB_SRC) -o $(TEST_EXEC)
+	$(CC) $(CFLAGS) -g -fsanitize=address,undefined $(TEST_SRC) $(LIB_SRC) -o $(TEST_EXEC) $(LDLIBS)
 	./$(TEST_EXEC)
 
 # Run "make clean" to delete compiled files
 clean:
-	rm -f output/*.o $(EXEC) $(TEST_EXEC)
+	rm -f output/*.o output/*.d $(EXEC) $(TEST_EXEC)
 
-.PHONY: all test clean
+.PHONY: all run test clean

@@ -1,3 +1,4 @@
+#include "evaluate.h"
 #include "parse.h"
 #include "tokenize.h"
 #include <stdio.h>
@@ -63,6 +64,10 @@ int main() {
         printf("%c -- %f\n", enumToChar(orderedEquation[i].tokenType), orderedEquation[i].value);
         i++;
     }
+
+    double calculatedResult = calculate(orderedEquation);
+
+    printf("Final calculation: %f\n\n", calculatedResult);
 
     free(tokenizedEquation);
     free(orderedEquation);
