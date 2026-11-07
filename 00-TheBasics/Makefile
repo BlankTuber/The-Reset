@@ -20,7 +20,7 @@ OBJ = $(SRC:src/%.c=output/%.o)
 EXEC = output/calculator
 
 # Test files and executable
-TEST_SRC = tests/test_tokenize.c
+TEST_SRC = tests/test.c
 TEST_EXEC = output/run_tests
 
 # Default target for "make" command
