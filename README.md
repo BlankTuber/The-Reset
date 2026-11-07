@@ -7,4 +7,4 @@ the day it can't help. So I'm taking a step back.
 
 ## Projects
 
-- [00-PEMDAS_Calculator/README.md](00-PEMDAS_Calculator/README.md)
+- [PEMDAS Calculator](00-PEMDAS_Calculator/README.md)
