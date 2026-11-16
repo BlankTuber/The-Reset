@@ -6,26 +6,27 @@
 #include <string.h>
 
 int main() {
-  char equationBuffer[1024];
-  if (fgets(equationBuffer, sizeof(equationBuffer), stdin) == NULL) {
-    fprintf(stderr, "Failed to read input");
-    return 1;
-  }
+	printf("Welcome to the PEMDAS Calculator!\nPlease write your PEMDAS expression: ");
 
-  if (strchr(equationBuffer, '\n') == NULL) {
-    fprintf(stderr, "Input too long!\n");
-    return 1;
-  }
+	char equationBuffer[1024];
+	if (fgets(equationBuffer, sizeof(equationBuffer), stdin) == NULL) {
+		fprintf(stderr, "Failed to read input");
+		return 1;
+	}
 
-  struct Token *tokenizedEquation = tokenize(equationBuffer); // Tokenize input
-  struct Token *orderedEquation =
-      shuntingYard(tokenizedEquation); // Order equation
-  double calculatedResult = calculate(orderedEquation);
+	if (strchr(equationBuffer, '\n') == NULL) {
+		fprintf(stderr, "Input too long!\n");
+		return 1;
+	}
 
-  printf("Final calculation: %f\n\n", calculatedResult);
+	struct Token *tokenizedEquation = tokenize(equationBuffer);		 // Tokenize input
+	struct Token *orderedEquation = shuntingYard(tokenizedEquation); // Order equation
+	double calculatedResult = calculate(orderedEquation);
 
-  free(tokenizedEquation);
-  free(orderedEquation);
+	printf("Final calculation: %f\n\n", calculatedResult);
 
-  return 0;
+	free(tokenizedEquation);
+	free(orderedEquation);
+
+	return 0;
 }
