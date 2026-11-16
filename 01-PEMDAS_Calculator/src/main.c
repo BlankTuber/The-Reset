@@ -6,25 +6,26 @@
 #include <string.h>
 
 int main() {
-    char equationBuffer[1024];
-    if (fgets(equationBuffer, sizeof(equationBuffer), stdin) == NULL) {
-        fprintf(stderr, "Failed to read input");
-        return 1;
-    }
+  char equationBuffer[1024];
+  if (fgets(equationBuffer, sizeof(equationBuffer), stdin) == NULL) {
+    fprintf(stderr, "Failed to read input");
+    return 1;
+  }
 
-    if (strchr(equationBuffer, '\n') == NULL) {
-        fprintf(stderr, "Input too long!\n");
-        return 1;
-    }
+  if (strchr(equationBuffer, '\n') == NULL) {
+    fprintf(stderr, "Input too long!\n");
+    return 1;
+  }
 
-    struct Token *tokenizedEquation = tokenize(equationBuffer);      // Tokenize input
-    struct Token *orderedEquation = shuntingYard(tokenizedEquation); // Order equation
-    double calculatedResult = calculate(orderedEquation);
+  struct Token *tokenizedEquation = tokenize(equationBuffer); // Tokenize input
+  struct Token *orderedEquation =
+      shuntingYard(tokenizedEquation); // Order equation
+  double calculatedResult = calculate(orderedEquation);
 
-    printf("Final calculation: %f\n\n", calculatedResult);
+  printf("Final calculation: %f\n\n", calculatedResult);
 
-    free(tokenizedEquation);
-    free(orderedEquation);
+  free(tokenizedEquation);
+  free(orderedEquation);
 
-    return 0;
+  return 0;
 }
